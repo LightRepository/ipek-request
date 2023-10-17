@@ -1,0 +1,255 @@
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url(../fonts/Roboto-Medium.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url(../fonts/Roboto-Bold.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url(../fonts/Roboto-Regular.ttf);
+  font-weight: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Roboto-Bold";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.13px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+body {
+  background-color: #88b5dd;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Ошибка */
+@keyframes alert {
+  0% {
+    margin-top: -150px;
+    opacity: 1;
+  }
+  10% {
+    margin-top: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    margin-top: 0;
+    opacity: 1;
+  }
+  100% {
+    margin-top: -150px;
+    opacity: 0;
+  }
+}
+
+.alert-request {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 72px;
+  right: 32px;
+  color: white;
+  white-space: nowrap;
+  background-color: #88b5dd;
+  z-index: 20;
+  border-radius: 16px;
+  padding: 16px 16px 16px 16px;
+  z-index: 15px;
+  margin-top: -150px;
+  opacity: 0;
+}
+
+.alert-request-anim {
+  animation: alert 5s ease-in-out forwards;
+}
+
+.alert-request h2 {
+  font-family: "Roboto-Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.alert-request p {
+  font-family: "Roboto-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.error {
+  background-color: #d96363;
+}
+
+.error h2 {
+  font-family: "Roboto-Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.error p {
+  font-family: "Roboto-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+.active {
+  display: flex;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.auth__title {
+  margin: 32px 0;
+}
+
+.auth__form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.auth__input-login {
+  font-family: "Roboto-Regular";
+  margin-bottom: 16px;
+  width: 320px;
+  height: 32px;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+  border: 2px solid #d9d9d9;
+  padding-left: 15px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}
+
+.auth__input-login::placeholder {
+  font-weight: inherit;
+  font-size: inherit;
+  color: #d9d9d9;
+}
+
+.auth__input-password {
+  font-family: "Roboto-Regular";
+  margin-bottom: 48px;
+  width: 320px;
+  height: 32px;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+  border: 2px solid #d9d9d9;
+  padding-left: 15px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}
+
+.auth__input-password::placeholder {
+  font-weight: inherit;
+  font-size: inherit;
+  color: #d9d9d9;
+}
+
+.auth__input-submit {
+  width: 240px;
+  height: 56px;
+  border-radius: 8px;
+  color: white;
+  background-color: #3292e6;
+  cursor: pointer;
+}
+
+.return__nav {
+  font-family: "Roboto-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  color: #2772b3;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+@keyframes errorVal {
+  0% {
+  }
+  10% {
+    border: 2px solid #d96363;
+    box-shadow: 0 0 0 1000px #fff inset, 0 4px 1px #d96363;
+  }
+  90% {
+    border: 2px solid #d96363;
+    box-shadow: 0 0 0 1000px #fff inset, 0 4px 1px #d96363;
+  }
+  100% {
+  }
+}
+
+.error__validation {
+  animation: errorVal 5s;
+}
+
+.hover-btns {
+  transition: 0.25s;
+}
+
+.hover-btns:hover {
+  box-shadow: 0 0 1000px rgba(0, 0, 0, 0.5) inset;
+  transition: 0.25s;
+}
+
+.hover-btns-t {
+  transition: 0.25s;
+}
+
+.hover-btns-t:hover {
+  color: #2b6cc4;
+  transition: 0.25s;
+}
