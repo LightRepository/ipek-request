@@ -1,17 +1,11 @@
-var btnFunc;
-var responsibleFunc;
-var user;
+var userAdmin = false;
+var userImplementer = false;
+var user = false;
 if (userPermissions === "Администратор") {
-  btnFunc = true;
-  responsibleFunc = false;
-  user = false;
+  userAdmin = true;
 } else if (userPermissions === "Ответственный") {
-  btnFunc = false;
-  responsibleFunc = true;
-  user = false;
+  userImplementer = true;
 } else {
-  btnFunc = false;
-  responsibleFunc = false;
   user = true;
 }
 
@@ -19,7 +13,7 @@ var statusFilterBtn = "active";
 const toggleRequest = (status) => {
   const data = LoadReq(status);
   data.then((res) => {
-    if (btnFunc) {
+    if (userAdmin) {
       Choice();
     }
     btnFilter();
@@ -48,8 +42,6 @@ function UserSwitch() {
   const message = document.getElementById("message-view");
   boxBtnFilt.style.left = "144px";
   nav.style.justifyContent = "flex-end";
-  otherEdit.remove();
-  reqEdit.remove();
   adminPanel.remove();
   checkboxBox.remove();
   //Для исполнителей
@@ -61,6 +53,8 @@ function UserSwitch() {
     message.style.margin = "0";
     respond.remove();
     submitRespond.remove();
+    otherEdit.remove();
+    reqEdit.remove();
   }
 }
 
@@ -223,7 +217,7 @@ const impDel = () => {
     });
   });
 };
-if (btnFunc) {
+if (userAdmin) {
   implementer.addEventListener("click", () => {
     reqAll = document.querySelectorAll(
       ".applications__box-applications-application input"
@@ -411,7 +405,7 @@ $.ajax({
 
   listViewer(nameSelectBody, listSort(data.listTeacher, "fio"), "name");
   listViewer(typeSelectBody, listSort(data.listCab, "number"), "cab");
-  if (btnFunc) {
+  if (userAdmin || userImplementer) {
     listViewer(typeSelectBodyEdit, listSort(data.listCab, "number"), "cab");
   }
   selectInp(
@@ -649,6 +643,13 @@ let LoadReq = async (btnAct) => {
           itemDeadline = `<h3 class="date__deadline title__info_h3 margin_null alert__deadline">Осталось дней: ${deadLine}</h3>
           `;
         }
+        let dateDeadline = `
+        <div class="date">
+          ${itemDeadline}
+        </div>`;
+        if (element.status === "Выполнена") {
+          dateDeadline = "";
+        }
         let choiceBox = `
         <div class="applications__box-applications-application-choice-label-checkbox-div">
           <input id="checkbox__choice-${i}" class="applications__box-applications-application-choice-checkbox checkbox__choice" type="checkbox" value="">
@@ -656,7 +657,7 @@ let LoadReq = async (btnAct) => {
           </label>
         </div>`;
         let paddingTextClass = "";
-        if (!btnFunc) {
+        if (!userAdmin) {
           choiceBox = "";
           paddingTextClass = `applications__box-applications-application-text-comp`;
         }
@@ -677,9 +678,7 @@ let LoadReq = async (btnAct) => {
                     Кабинет: ${element.cabinet}
                   </h3>
                 </div>
-                <div class="date">
-                  ${itemDeadline}
-                </div>
+                ${dateDeadline}
               </div>
           </div>
           ${infoReq}
@@ -1335,7 +1334,7 @@ let RequestOpenChange = function () {
               const file_no = document.querySelector("#insert__img-box-view");
               file_no.className = "no__files";
             }
-            if (userPermissions === "Ответственный") {
+            if (userImplementer) {
               if (data.userActiveReq) {
                 submitRespond.classList.remove("no__active");
                 respond.classList.add("no__active");
@@ -1345,7 +1344,7 @@ let RequestOpenChange = function () {
               }
             }
           }
-          if (btnFunc) {
+          if (userAdmin || userImplementer) {
             idReqEdit.setAttribute("tag", el.id);
           }
           return (dataReqType = data.status);
@@ -1383,7 +1382,7 @@ const otherViewRequestView = document.querySelector("#other-view");
 const edit = document.querySelector(".edit");
 const requestViewEdit = document.getElementById("request-view-edit");
 const closeRequestEdit = document.getElementById("close__request-edit");
-if (btnFunc) {
+if (userAdmin || userImplementer) {
   var trashFileArr = [];
   otherViewRequestView.addEventListener("click", () => {
     fieldEdit.classList.toggle("no__active");
@@ -1787,7 +1786,7 @@ filtersBtn[filterBtnCount].addEventListener("click", () => {
 
 //Удаление заявок
 const trashBtn = document.querySelector("#trash");
-if (btnFunc !== false) {
+if (userAdmin !== false) {
   trashBtn.addEventListener("click", () => {
     confirmation(editDeleteAlert, "toggle");
   });
@@ -2060,7 +2059,7 @@ setInterval(() => {
     count -= 1;
   }
 }, 1000);
-if (btnFunc) {
+if (userAdmin) {
   //Панель админа
   var fio;
   const btnAdmOpen = document.querySelector(".adminPanel");
@@ -2436,8 +2435,7 @@ shadowWindow.forEach((el) => {
     }
   });
 });
-
-if (btnFunc === false) {
+if (userAdmin === false) {
   UserSwitch();
 } else {
   respond.remove();
