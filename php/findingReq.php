@@ -20,6 +20,7 @@ include "induction.php";
             'cabinet' => $req['cabinet'],
             'source' => $req['source'],
             'deadline' => $req['deadline'],
+            'groupResponible' => $req['group_responsible'],
             'listResponsibles'=> $FileMassResponsibles,
             'user'=> $_COOKIE['user']
         );
