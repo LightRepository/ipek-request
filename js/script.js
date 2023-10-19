@@ -582,7 +582,7 @@ let LoadReq = async (btnAct) => {
       let i = data.length - 1;
       reqBox.innerHTML = "";
       let dateNow = new Date();
-      data.forEach((element) => {
+      data.forEach((element, index) => {
         let dateDeadLine = new Date(element.deadline);
         let deadLine = 0;
         let respArr = [];
@@ -663,12 +663,24 @@ let LoadReq = async (btnAct) => {
         }
         let addReqBox = document.createElement("div");
         reqBox.prepend(addReqBox);
+        let groupResponible = data[index].groupResponible;
+        if (groupResponible === "Группа ответственных") {
+          groupResponible = "Нет";
+        }
+        let label = `
+          <div class="applications__box-applications-application-label">
+            <p>${groupResponible}</p>
+          </div>
+        `;
         addReqBox.outerHTML = `
           <div class="applications__box-applications-application no__active" id='${element.id}'>
           ${choiceBox}
+          ${label}
           <div class="applications__box-applications-application-text ${paddingTextClass}" id='${element.id}'>
+            <div class="applications__box-applications-application-text-info">              
               <h2 class="title">${element.title} -</h2>
               <p>${element.main_text}</p>
+            </div>
               <div class="title__info">
                 <div class="t__and__c">
                   <h3 class="title__info_h3">

@@ -102,7 +102,7 @@
                     </div>
                     <div class="group_select select">
                         <div class="group_select__header hover-selection" id="group_select__header">
-                            <span class="group_select__current" id="group_select__current">Группа ответственных</span>
+                            <span class="group_select__current font-black" id="group_select__current">ИКТ</span>
                             <span class="type_select__arrow arrow">
                                 <img src="img/select-arrow.svg" alt="">
                             </span>
