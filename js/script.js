@@ -905,7 +905,7 @@ function targetSubmitReq() {
     request.classList.remove("active");
     alertEvent("Отправлено", "Ваша заявка отправлена");
     firstSelectBoolean = false;
-    secondSelectBoolean = false;
+    secondSelectBoolean = true;
     thridSelectBoolean = false;
     fourthSelectBoolean = false;
     allSelectBoolean = false;

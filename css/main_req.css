@@ -1118,6 +1118,7 @@ form {
   border-radius: 8px;
   width: 100%;
   padding-left: 16px;
+  padding-right: 16px;
   padding-top: 5px;
   font-size: 20px;
   line-height: 23px;
@@ -2817,7 +2818,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .applications__box-applications-application-text p {
   font-family: "Roboto-Regular";
   font-weight: 400;
-
   font-size: 16px;
   line-height: 18.75px;
   color: #bbbbbb;
@@ -2826,6 +2826,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-overflow: ellipsis;
   display: flex;
   flex-shrink: 2;
+  max-width: 600px;
 }
 
 .title__info {
