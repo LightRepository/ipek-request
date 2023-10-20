@@ -48,8 +48,8 @@ if($admInplist == "listTeacher"){
         $groupSelect = $_POST['groupSelect']; 
         $admInpForm  = trim($_POST['textInput']); 
         $roleSelect = $_POST['roleSelect'];
-        $fromRespLogin = trim($_POST['fromRespLogin']);
-        $fromRespPassword = trim($_POST['fromRespPassword']);
+        $fromRespLogin = htmlspecialchars(trim($_POST['fromRespLogin']));
+        $fromRespPassword = password_hash(trim($_POST['fromRespPassword']), PASSWORD_DEFAULT);
         $resultResp = $mysql->query("SELECT * FROM `users` WHERE `name` = '$admInpForm'");
         $FileMassResponsibles = array();
         while($reqResp = mysqli_fetch_assoc($resultResp)){
@@ -74,8 +74,8 @@ if($admInplist == "listTeacher"){
         $groupSelect = $_POST['groupSelect']; //
         $admInpForm  = trim($_POST['textInput']); //
         $roleSelect = $_POST['roleSelect'];
-        $fromRespLogin = trim($_POST['fromRespLogin']);
-        $fromRespPassword = trim($_POST['fromRespPassword']);
+        $fromRespLogin = htmlspecialchars(trim($_POST['fromRespLogin']));
+        $fromRespPassword = password_hash(trim($_POST['fromRespPassword']), PASSWORD_DEFAULT);
         $nameItem = $_POST['fio'];
         $result = $mysql->query("UPDATE `$admInplist` SET `fio` = '$admInpForm', `specialization` = '$groupSelect' WHERE `id` = '$admItemId';");
         $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `password` = '$fromRespPassword', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");

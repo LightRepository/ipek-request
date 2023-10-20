@@ -1,15 +1,17 @@
 <?php 
-$login  = trim($_POST['login']);
-$pass  = trim($_POST['password']);
+$login  = htmlspecialchars(trim($_POST['login']));
+$pass  =  trim($_POST['password']);
 include "induction.php";
-$result = $mysql->query("SELECT * FROM `users` WHERE `login`='$login' AND `password`= '$pass'");
-$user = $result->fetch_assoc();
+$LoginSuccess = $mysql->query("SELECT * FROM `users` WHERE `login`='$login'");
+$user = $LoginSuccess->fetch_assoc();
 if(count($user)==0){
 exit();
-} else {
+}
+if(!($PasswordSuccess =  password_verify($pass, $user['password']))){
+exit();
+}
 setcookie('user', $user['name'], time() + 3600 * 8, "/");
 setcookie('permissions', $user['permissions'], time() + 3600 * 8, "/");
 echo (1);
-};
 $mysql->close();
 ?>
