@@ -18,8 +18,8 @@
             <div class="auth">
                 <p class="auth__title">Авторизация</p>
                 <form class="auth__form" action="php/auth.php" method="post" id="form">
-                    <input class="auth__input-login auth__input" type="text" name="login" placeholder="Введите логин">
-                    <input class="auth__input-password auth__input" type="password" name="pass" placeholder="Введите пароль">
+                    <input class="auth__input-login auth__input" type="text" name="login" placeholder="Введите логин" autofocus>
+                    <input class="auth__input-password auth__input" type="password" name="pass" placeholder="Введите пароль" autofocus>
                     <input class="auth__input-submit hover-btns" type="button" value="Вход">    
                 </form>
                 <a src="" class="return__nav hover-btns-t">Вернуться в Навигатор</a>
