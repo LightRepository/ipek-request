@@ -75,10 +75,14 @@ if($admInplist == "listTeacher"){
         $admInpForm  = trim($_POST['textInput']); //
         $roleSelect = $_POST['roleSelect'];
         $fromRespLogin = htmlspecialchars(trim($_POST['fromRespLogin']));
-        $fromRespPassword = password_hash(trim($_POST['fromRespPassword']), PASSWORD_DEFAULT);
         $nameItem = $_POST['fio'];
         $result = $mysql->query("UPDATE `$admInplist` SET `fio` = '$admInpForm', `specialization` = '$groupSelect' WHERE `id` = '$admItemId';");
-        $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `password` = '$fromRespPassword', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");
+        if($_POST['passViewer'] === "true"){
+            $fromRespPassword = password_hash(trim($_POST['fromRespPassword']), PASSWORD_DEFAULT);
+            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `password` = '$fromRespPassword', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");
+        } else {
+            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");
+        }
         echo(1);
     } else if($admInpType == 'delete'){
         $nameItem = $_POST['fio'];

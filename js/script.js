@@ -348,7 +348,6 @@ function select(
     currentText.innerText = text;
     currentText.classList.add("font-black");
     select.classList.remove("active");
-    secondSelectBoolean = true;
   }
   const selectClose = document.querySelector(selectClass);
   document.addEventListener("click", (e) => {
@@ -837,7 +836,6 @@ function scrollT() {
 }
 
 var firstSelectBoolean = false;
-var secondSelectBoolean = false;
 var thridSelectBoolean = false;
 var fourthSelectBoolean = false;
 var allSelectBoolean = false;
@@ -862,7 +860,6 @@ btnApplicationActive.addEventListener("click", function () {
 function targetSubmitReq() {
   if (
     firstSelectBoolean == true &&
-    secondSelectBoolean == true &&
     thridSelectBoolean == true &&
     fourthSelectBoolean == true
   ) {
@@ -905,7 +902,6 @@ function targetSubmitReq() {
     request.classList.remove("active");
     alertEvent("Отправлено", "Ваша заявка отправлена");
     firstSelectBoolean = false;
-    secondSelectBoolean = true;
     thridSelectBoolean = false;
     fourthSelectBoolean = false;
     allSelectBoolean = false;
@@ -917,7 +913,6 @@ function targetSubmitReq() {
       el.value = "";
     });
     validationSelectType.innerText = typeInnerText;
-    validationSelectType.classList.remove("font-black");
     validationSelectGroup.innerText = groupInnerText;
     validationSelectGroup.classList.remove("font-black");
     const createEdit = document.querySelectorAll(".create__file");
@@ -2168,7 +2163,6 @@ if (userAdmin) {
     if (
       fromRespFio.value != "" &&
       fromRespLogin.value != "" &&
-      fromRespPassword.value != "" &&
       groupAdmBtn.innerText != "" &&
       groupAdmBtn.innerText != "Группа"
     ) {
@@ -2183,6 +2177,10 @@ if (userAdmin) {
         list: btnDown,
         id: itemId,
       };
+      let passVerify = false
+      if(!(fromRespPassword.value.trim() === '')){
+        passVerify = true
+      }
       $.ajax({
         url: "php/adminPanelAdd.php",
         type: "POST",
@@ -2194,6 +2192,7 @@ if (userAdmin) {
           textInput: fromRespFio.value,
           fromRespLogin: fromRespLogin.value,
           fromRespPassword: fromRespPassword.value,
+          passViewer: passVerify,
           type: listItemEvenChoice,
           list: btnDown,
           id: itemId,
@@ -2301,7 +2300,6 @@ if (userAdmin) {
             }).done((data) => {
               fromRespFio.value = data.listResponsibles.name;
               fromRespLogin.value = data.listResponsibles.login;
-              fromRespPassword.value = data.listResponsibles.password;
               groupAdmBtn.innerText = data.role.specialization;
               groupAdmBtn.classList.add("font-black");
               roleAdmBtn.innerText = data.listResponsibles.permissions;

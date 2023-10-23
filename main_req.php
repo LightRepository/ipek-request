@@ -398,7 +398,7 @@
                                                 <input type="form" placeholder="Логин" class="fromRespLogin">
                                             </div>
                                             <div class="responsibleAdd__main__form__row">
-                                                <input type="form" placeholder="Пароль" class="fromRespPassword">
+                                                <input type="form" placeholder="Новый пароль" class="fromRespPassword">
                                             </div>
                                         </form>
                                     </div>
