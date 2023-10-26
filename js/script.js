@@ -677,7 +677,7 @@ let LoadReq = async (btnAct) => {
           ${label}
           <div class="applications__box-applications-application-text ${paddingTextClass}" id='${element.id}'>
             <div class="applications__box-applications-application-text-info">              
-              <h2 class="title">${element.title} -</h2>
+              <h2 class="title">${element.title}</h2>
               <p>${element.main_text}</p>
             </div>
               <div class="title__info">
@@ -2177,9 +2177,9 @@ if (userAdmin) {
         list: btnDown,
         id: itemId,
       };
-      let passVerify = false
-      if(!(fromRespPassword.value.trim() === '')){
-        passVerify = true
+      let passVerify = false;
+      if (!(fromRespPassword.value.trim() === "")) {
+        passVerify = true;
       }
       $.ajax({
         url: "php/adminPanelAdd.php",
