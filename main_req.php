@@ -109,7 +109,7 @@
                         </div>
                         <div class="group_select__body">
                             <div class="group_select__item">ИКТ</div>
-                            <div class="group_select__item">Электрики</div>
+                            <div class="group_select__item">АХЧ</div>
                         </div>
                         <input type="hidden" name="group_responsible" id='group_responsible'>
                     </div>
@@ -303,7 +303,7 @@
                             </div>
                             <div class="group_select__body scroll">
                                 <div class="group_select__item-group sys__admin">ИКТ</div>
-                                <div class="group_select__item-group electrician">Электрики</div>
+                                <div class="group_select__item-group electrician">АХЧ</div>
                             </div>
                             <input type="hidden" name="group_responsible" id='group_responsible'>
                     </div>
@@ -378,7 +378,7 @@
                                                     </div>
                                                     <div class="group_select__body admInpGroupBody">
                                                     <div class="group_select__item">ИКТ</div>
-                                                    <div class="group_select__item">Электрики</div>
+                                                    <div class="group_select__item">АХЧ</div>
                                                     </div>
                                                 </div>
                                                 <div class="group_select select admInpRoleSelect">

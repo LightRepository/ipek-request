@@ -385,7 +385,7 @@ $.ajax({
 
       if (e.specialization === "ИКТ") {
         sysAdmin[i].after(item);
-      } else if (e.specialization === "Электрики") {
+      } else if (e.specialization === "АХЧ") {
         electrician[i].after(item);
       }
       item.outerHTML = `<div class="group_select__item group_select__item-edit">${e.fio}</div>`;
