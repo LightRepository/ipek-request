@@ -544,6 +544,7 @@
         <script>
             var userPermissions='<?= $_COOKIE['permissions'] ?>';
             var userName='<?= $_COOKIE['user'] ?>'; 
+            var userRole = '<?= $_COOKIE['role'] ?>'
     </script>
 </body>
 

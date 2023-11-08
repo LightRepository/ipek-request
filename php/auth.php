@@ -12,6 +12,7 @@ exit();
 }
 setcookie('user', $user['name'], time() + 3600 * 8, "/");
 setcookie('permissions', $user['permissions'], time() + 3600 * 8, "/");
+setcookie('role', $user['role'], time() + 3600 * 8, "/");
 echo (1);
 $mysql->close();
 ?>

@@ -577,10 +577,19 @@ let LoadReq = async (btnAct) => {
     url: "php/findingReq.php",
     type: "POST",
     dataType: "json",
-    success: function (data) {
-      let i = data.length - 1;
+    success: function (dataError) {
       reqBox.innerHTML = "";
       let dateNow = new Date();
+      let data;
+      if (userPermissions === "Ответственный") {
+        data = dataError.filter(
+          (element) => element.groupResponible === userRole
+        );
+      } else {
+        data = dataError;
+      }
+
+      let i = data.length - 1;
       data.forEach((element, index) => {
         let dateDeadLine = new Date(element.deadline);
         let deadLine = 0;

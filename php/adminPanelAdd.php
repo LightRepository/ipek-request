@@ -64,8 +64,8 @@ if($admInplist == "listTeacher"){
         if($checkUnique == 0){
             $result = $mysql->query("INSERT INTO `$admInplist` (`fio`, `specialization`)
             VALUES ('$admInpForm', '$groupSelect')");
-            $result = $mysql->query("INSERT INTO `users` (`login`, `password`, `name`, `permissions`)
-            VALUES ('$fromRespLogin', '$fromRespPassword', '$admInpForm', '$roleSelect')");
+            $result = $mysql->query("INSERT INTO `users` (`login`, `password`, `name`, `permissions`, `role`)
+            VALUES ('$fromRespLogin', '$fromRespPassword', '$admInpForm', '$roleSelect', '$groupSelect')");
             echo(1);
         } else { 
             echo(false);
@@ -79,9 +79,9 @@ if($admInplist == "listTeacher"){
         $result = $mysql->query("UPDATE `$admInplist` SET `fio` = '$admInpForm', `specialization` = '$groupSelect' WHERE `id` = '$admItemId';");
         if($_POST['passViewer'] === "true"){
             $fromRespPassword = password_hash(trim($_POST['fromRespPassword']), PASSWORD_DEFAULT);
-            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `password` = '$fromRespPassword', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");
+            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `password` = '$fromRespPassword', `permissions` = '$roleSelect', `role` = '$groupSelect' WHERE `name` = '$nameItem';");
         } else {
-            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `permissions` = '$roleSelect' WHERE `name` = '$nameItem';");
+            $result = $mysql->query("UPDATE `users` SET `name` = '$admInpForm', `login` = '$fromRespLogin', `permissions` = '$roleSelect', `role` = '$groupSelect' WHERE `name` = '$nameItem';");
         }
         echo(1);
     } else if($admInpType == 'delete'){
