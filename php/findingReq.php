@@ -5,7 +5,7 @@ include "induction.php";
     $arr = array();
     while($req = mysqli_fetch_assoc($result)){
         $newId = $req['id'];
-        $resultResp = mysqli_query($mysql, "SELECT * FROM `active_responsible` WHERE `request_id` = '$newId'");
+        $resultResp = mysqli_query($mysql, "SELECT * FROM `active_responsible` WHERE `request_id` = '$newId' LIMIT 200");
         $FileMassResponsibles = array();
         while($reqResp = mysqli_fetch_assoc($resultResp)){
             array_push($FileMassResponsibles, $reqResp);
