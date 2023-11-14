@@ -1,11 +1,11 @@
 <?php 
 $user = $_COOKIE['user'];
 include "induction.php";
-    $result = mysqli_query($mysql, "SELECT * FROM `request` ORDER BY `dateCompletion`");
+    $result = mysqli_query($mysql, "SELECT * FROM `request` ORDER BY `dateCompletion` LIMIT 200");
     $arr = array();
     while($req = mysqli_fetch_assoc($result)){
         $newId = $req['id'];
-        $resultResp = mysqli_query($mysql, "SELECT * FROM `active_responsible` WHERE `request_id` = '$newId' LIMIT 200");
+        $resultResp = mysqli_query($mysql, "SELECT * FROM `active_responsible` WHERE `request_id` = '$newId' ");
         $FileMassResponsibles = array();
         while($reqResp = mysqli_fetch_assoc($resultResp)){
             array_push($FileMassResponsibles, $reqResp);
