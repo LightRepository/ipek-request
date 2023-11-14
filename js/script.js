@@ -305,10 +305,10 @@ function selectInp(
     currentText.value = text;
     currentText.classList.add("font-black");
     select.classList.remove("active");
-    if (selectBoolean == "firstSelectBoolean") {
-      firstSelectBoolean = true;
-    } else if (selectBoolean == "thridSelectBoolean") {
-      thridSelectBoolean = true;
+    if (selectBoolean == "isCabNumSelect") {
+      isCabNumSelect = true;
+    } else if (selectBoolean == "isNameSelect") {
+      isNameSelect = true;
     }
   }
   const selectClose = document.querySelector(selectClass);
@@ -412,7 +412,7 @@ $.ajax({
     ".name_select__item",
     ".name_select__current",
     ".name_select",
-    "thridSelectBoolean"
+    "isNameSelect"
   );
 
   selectInp(
@@ -420,22 +420,22 @@ $.ajax({
     ".type_select__item",
     ".type_select__current",
     ".type_select",
-    "firstSelectBoolean"
+    "isCabNumSelect"
   );
   function compareVal(data, sources, selectBoolean, e) {
     let text = e.target.value;
     data.forEach((element) => {
       if (element[sources].toLowerCase() === text.toLowerCase()) {
-        if (selectBoolean == "firstSelectBoolean") {
-          firstSelectBoolean = true;
-        } else if (selectBoolean == "thridSelectBoolean") {
-          thridSelectBoolean = true;
+        if (selectBoolean == "isCabNumSelect") {
+          isCabNumSelect = true;
+        } else if (selectBoolean == "isNameSelect") {
+          isNameSelect = true;
         }
       } else {
-        if (selectBoolean == "firstSelectBoolean") {
-          firstSelectBoolean = false;
-        } else if (selectBoolean == "thridSelectBoolean") {
-          thridSelectBoolean = false;
+        if (selectBoolean == "isCabNumSelect") {
+          isCabNumSelect = false;
+        } else if (selectBoolean == "isNameSelect") {
+          isNameSelect = false;
         }
       }
     });
@@ -444,10 +444,10 @@ $.ajax({
   let cab = document.getElementById("type_select__current");
 
   name.addEventListener("input", (e) => {
-    compareVal(data.listTeacher, "fio", "thridSelectBoolean", e);
+    compareVal(data.listTeacher, "fio", "isNameSelect", e);
   });
   cab.addEventListener("input", (e) => {
-    compareVal(data.listCab, "number", "firstSelectBoolean", e);
+    compareVal(data.listCab, "number", "isCabNumSelect", e);
   });
 
   function selectFilter() {
@@ -532,10 +532,10 @@ document.addEventListener("click", (e) => {
 deadLine.addEventListener("change", () => {
   if (deadLine.value != "") {
     deadLine.classList.add("font-black");
-    fourthSelectBoolean = true;
+    isDeadlineSelect = true;
   } else if (deadLine.value == "") {
     deadLine.classList.remove("font-black");
-    fourthSelectBoolean = false;
+    isDeadlineSelect = false;
   }
   let dateNow = new Date();
   let dateNowDay = dateNow.getDate();
@@ -685,7 +685,7 @@ let LoadReq = async (btnAct) => {
           ${choiceBox}
           ${label}
           <div class="applications__box-applications-application-text ${paddingTextClass}" id='${element.id}'>
-            <div class="applications__box-applications-application-text-info">              
+            <div class="applications__box-applications-application-text-info">
               <h2 class="title">${element.title}</h2>
               <p>${element.main_text}</p>
             </div>
@@ -844,10 +844,10 @@ function scrollT() {
   });
 }
 
-var firstSelectBoolean = false;
-var thridSelectBoolean = false;
-var fourthSelectBoolean = false;
-var allSelectBoolean = false;
+var isCabNumSelect = false;
+var isNameSelect = false;
+var isDeadlineSelect = false;
+var isTitleSelect = false;
 
 //Валидация
 
@@ -856,31 +856,27 @@ const validationInp = document.querySelectorAll(".val_null__inp");
 const validationSelectType = document.getElementById("type_select__current");
 const validationSelectGroup = document.getElementById("group_select__current");
 const typeSelectHeader = document.querySelectorAll(".type_select__header");
-const groupSelectHeader = document.querySelectorAll(".group_select__header");
 const nameSelectHeader = document.querySelectorAll(".name_select__header");
+const titleSelectHeader = document.querySelectorAll(".title_select__header");
+const deadlineSelectHeader = document.querySelectorAll(
+  ".deadline_select__header"
+);
 const messange = document.getElementById("messange");
 var typeInnerText = validationSelectType.innerText;
 var groupInnerText = validationSelectGroup.innerText;
-var countValidation = 0;
 
 btnApplicationActive.addEventListener("click", function () {
   request.classList.add("active");
 });
 function targetSubmitReq() {
+  const title = document.getElementById("title");
+  isTitleSelect = title.value.trim() !== "" ? true : false;
   if (
-    firstSelectBoolean == true &&
-    thridSelectBoolean == true &&
-    fourthSelectBoolean == true
+    isCabNumSelect === true &&
+    isNameSelect === true &&
+    isDeadlineSelect === true &&
+    isTitleSelect === true
   ) {
-    allSelectBoolean = true;
-  }
-  validationBtn.forEach((el) => {
-    if (el.value.trim() !== "") {
-      countValidation++;
-    }
-  });
-  if (countValidation == validationBtn.length && allSelectBoolean == true) {
-    countValidation = 0;
     const groupeResponibleInp = document.querySelector(
       ".group_select__current"
     );
@@ -910,10 +906,10 @@ function targetSubmitReq() {
     });
     request.classList.remove("active");
     alertEvent("Отправлено", "Ваша заявка отправлена");
-    firstSelectBoolean = false;
-    thridSelectBoolean = false;
-    fourthSelectBoolean = false;
-    allSelectBoolean = false;
+    isCabNumSelect = false;
+    isNameSelect = false;
+    isDeadlineSelect = false;
+    isTitleSelect = false;
     deadLine.classList.remove("font-black");
     validationBtn.forEach((el) => {
       el.value = "";
@@ -948,12 +944,19 @@ function targetSubmitReq() {
     scrollT();
   } else {
     scrollT();
-    countValidation = 0;
     alertEvent("Ошибка!", "Проверьте правильность ввода данных", "error");
-    alertVal(validationBtn);
-    alertVal(typeSelectHeader);
-    alertVal(groupSelectHeader);
-    alertVal(nameSelectHeader);
+    if (isCabNumSelect === false) {
+      alertVal(typeSelectHeader);
+    }
+    if (isNameSelect === false) {
+      alertVal(nameSelectHeader);
+    }
+    if (isDeadlineSelect === false) {
+      alertVal(deadlineSelectHeader);
+    }
+    if (isTitleSelect === false) {
+      alertVal(titleSelectHeader);
+    }
   }
 }
 

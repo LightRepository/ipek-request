@@ -77,7 +77,7 @@
                         <p class="applications__window-request-text">Заявка</p>
                         <input type="button" value="" class="close__request">
                     </div>
-                    <input type="form" name="title" class="val_null hover-selection" placeholder="Название заявки" id='title' maxlength="36" autocomplete="off">
+                    <input type="form" name="title" class="val_null hover-selection title_select__header" placeholder="Название заявки" id='title' maxlength="36" autocomplete="off">
                     <div class="name_select select">
                         <div class="name_select__header select__header hover-selection">
                             <input type="text" name="source" class="name_select__current val_null__inp" id='source' placeholder="ФИО" maxlength="28" autocomplete="off">
@@ -114,7 +114,7 @@
                         <input type="hidden" name="group_responsible" id='group_responsible'>
                     </div>
                     <div class="date-deadLine-box">
-                        <input type="date" name="date" placeholder="Срок" id='date-deadLine' class="date-dead__line val_null hover-selection">
+                        <input type="date" name="date" placeholder="Срок" id='date-deadLine' class="date-dead__line val_null hover-selection deadline_select__header">
                         <label for="date-deadLine" class="date-deadLine-box-label">
                             <p>Крайний срок выполнения</p>
                         </label>
