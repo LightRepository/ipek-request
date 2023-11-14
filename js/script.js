@@ -29,6 +29,7 @@ const respond = document.getElementById("respond");
 // Для пользователей
 
 function UserSwitch() {
+  const adminFilter = document.querySelectorAll(".admin-Filter");
   const adminPanel = document.querySelector(".adminPanel");
   const nav = document.querySelector(".menu");
   const otherEdit = document.getElementById("other-view");
@@ -55,6 +56,9 @@ function UserSwitch() {
     submitRespond.remove();
     otherEdit.remove();
     reqEdit.remove();
+    adminFilter.forEach((filter) => {
+      filter.remove();
+    });
   }
 }
 
