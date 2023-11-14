@@ -1,7 +1,7 @@
 <?php 
 $user = $_COOKIE['user'];
 include "induction.php";
-    $result = mysqli_query($mysql, "SELECT * FROM `request` ORDER BY `dateCompletion` LIMIT 200");
+    $result = mysqli_query($mysql, "SELECT * FROM `request` ORDER BY `deadline` LIMIT 100");
     $arr = array();
     while($req = mysqli_fetch_assoc($result)){
         $newId = $req['id'];
