@@ -429,7 +429,7 @@
                 <div class="filters">
                     <p>Фильтры</p>
                     <ul>
-                        <li class="admin-Filter">
+                        <li numeration="1" class="admin-Filter">
                             <div class="box-filter">
                                 <input type="button" value="Дата создания" id="filters-btn-1">
                                 <label for="filters-btn-1" class="label-filters-btn"></label>
@@ -441,7 +441,7 @@
                                 <input type="date" value="" placeholder="Конец" class="filters-btn dateFilter" required>
                             </div>
                         </li>
-                        <li class="admin-Filter">
+                        <li numeration="2" class="admin-Filter">
                             <div class="box-filter">
                                 <input type="button" value="Дата выполнения" id="filters-btn-2">
                                 <label for="filters-btn-2" class="label-filters-btn"></label>
@@ -453,7 +453,7 @@
                                 <input type="date" value="" placeholder="Конец" class="filters-btn dateFilter" required>
                             </div>
                         </li>
-                        <li>
+                        <li numeration="3">
                             <div class="box-filter">
                                 <input type="button" value="Кем создано" id="filters-btn-3">
                                 <label for="filters-btn-3" class="label-filters-btn"></label>
@@ -462,7 +462,7 @@
                                 <input type="form" value="" placeholder="ФИО" class="filters-btn searchInpByWhomCr" autocomplete="off">
                             </div>
                         </li>
-                        <li class="admin-Filter">
+                        <li numeration="4" class="admin-Filter">
                             <div class="box-filter">
                                 <input type="button" value="Исполнители" id="filters-btn-4">
                                 <label for="filters-btn-4" class="label-filters-btn"></label>
@@ -471,7 +471,7 @@
                                 <input type="form" value="" placeholder="ФИО" class="filters-btn searchInpByWhomCp" autocomplete="off">
                             </div>
                         </li>
-                        <li>
+                        <li numeration="5">
                             <div class="box-filter">
                                 <input type="button" value="Кабинет" id="filters-btn-6">
                                 <label for="filters-btn-6" class="label-filters-btn"></label>
@@ -480,7 +480,7 @@
                                 <input type="form" value="" placeholder="Кабинет" class="filters-btn searchInpCab" autocomplete="off">
                             </div>
                         </li>
-                        <li class="admin-Filter">
+                        <li numeration="6" class="admin-Filter">
                             <div class="box-filter">
                                 <input type="button" value="Статус" id="filters-btn-5">
                                 <label for="filters-btn-5" class="label-filters-btn"></label>

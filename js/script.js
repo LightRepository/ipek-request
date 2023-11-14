@@ -1998,26 +1998,27 @@ filterEdit.forEach((element) => {
           const searchInpByWhomCp =
             document.querySelector(".searchInpByWhomCp");
           const searchInpCab = document.querySelector(".searchInpCab");
+          if (userAdmin === true) {
+            searchInpByWhomCp.addEventListener("input", (e) => {
+              searchFilterJs(searchInpByWhomCp, data, "listResponsibles", 4);
+            });
 
-          searchInpCab.addEventListener("input", (e) => {
-            searchFilterJs(searchInpCab, data, "cabinet", 5);
-          });
-
+            dateFilter.forEach((el) => {
+              el.addEventListener("input", () => {
+                filterDate(data);
+              });
+            });
+            filtersBtnCheckbox.forEach((el) => {
+              el.addEventListener("change", () => {
+                filterStatusF(data);
+              });
+            });
+          }
           searchInpByWhomCr.addEventListener("input", (e) => {
             searchFilterJs(searchInpByWhomCr, data, "source", 3);
           });
-          searchInpByWhomCp.addEventListener("input", (e) => {
-            searchFilterJs(searchInpByWhomCp, data, "listResponsibles", 4);
-          });
-          dateFilter.forEach((el) => {
-            el.addEventListener("input", () => {
-              filterDate(data);
-            });
-          });
-          filtersBtnCheckbox.forEach((el) => {
-            el.addEventListener("change", () => {
-              filterStatusF(data);
-            });
+          searchInpCab.addEventListener("input", (e) => {
+            searchFilterJs(searchInpCab, data, "cabinet", 5);
           });
           const filtersAll = document.querySelectorAll(".filters li");
           filtersReset.addEventListener("click", (e) => {
@@ -2045,25 +2046,28 @@ filterEdit.forEach((element) => {
                 "label-filters-active__btn"
               );
             }
+            if (userAdmin === true) {
+              dateCreate[0].value = "";
+              dateCreate[1].value = "";
+              dateComplete[0].value = "";
+              dateComplete[1].value = "";
+              completByWhom[0].value = "";
+              statusR[0].checked = false;
+              statusR[1].checked = false;
+              filterStatus[0].classList.remove("filter__status-active");
+              filterStatus[1].classList.remove("filter__status-active");
+            }
 
-            dateCreate[0].value = "";
-            dateCreate[1].value = "";
-            dateComplete[0].value = "";
-            dateComplete[1].value = "";
             createdByWhom[0].value = "";
-            completByWhom[0].value = "";
             cabinetR[0].value = "";
-            statusR[0].checked = false;
-            statusR[1].checked = false;
-            filterStatus[0].classList.remove("filter__status-active");
-            filterStatus[1].classList.remove("filter__status-active");
             let req = document.querySelectorAll(
               ".applications__box-applications-application"
             );
             req.forEach((el) => {
               for (let i = 0; i < filtersAll.length; i++) {
-                if (el.className.includes(`filter__active-${i + 1}`)) {
-                  el.classList.remove(`filter__active-${i + 1}`);
+                const numeration = filtersAll[i].attributes.numeration.value;
+                if (el.className.includes(`filter__active-${numeration}`)) {
+                  el.classList.remove(`filter__active-${numeration}`);
                 }
               }
             });
