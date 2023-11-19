@@ -677,20 +677,29 @@ let LoadReq = async (btnAct) => {
         reqBox.prepend(addReqBox);
         let groupResponible = data[index].groupResponible;
         if (groupResponible === "Группа ответственных") {
-          groupResponible = "Нет";
+          groupResponible = "<p>Нет</p>";
+        } else {
+          groupResponible = `<p>${groupResponible}</p>`;
         }
+        // Добавь на этот onclick функцию добавления отвественых! XD
+        groupResponible += `<input class='mobile__add-implementer' onclick=""/>`;
         let label = `
           <div class="applications__box-applications-application-label">
-            <p>${groupResponible}</p>
+            ${groupResponible}
           </div>
         `;
         addReqBox.outerHTML = `
-          <div class="applications__box-applications-application no__active" id='${element.id}'>
+          <div class="applications__box-applications-application no__active" id='${
+            element.id
+          }'>
           ${choiceBox}
           ${label}
-          <div class="applications__box-applications-application-text ${paddingTextClass}" id='${element.id}'>
+          <div class="applications__box-applications-application-text ${paddingTextClass}" id='${
+          element.id
+        }'>
             <div class="applications__box-applications-application-text-info">
               <h2 class="title">${element.title}</h2>
+              ${element.main_text.trim() !== "" ? "<span>-</span>" : ""}
               <p>${element.main_text}</p>
             </div>
               <div class="title__info">
