@@ -45,6 +45,8 @@ function UserSwitch() {
   nav.style.justifyContent = "flex-end";
   adminPanel.remove();
   checkboxBox.remove();
+
+
   //Для исполнителей
   if (userPermissions === "Ответственный") {
     submitRespond.classList.add("no__active");
@@ -681,8 +683,10 @@ let LoadReq = async (btnAct) => {
         } else {
           groupResponible = `<p>${groupResponible}</p>`;
         }
-        // Добавь на этот onclick функцию добавления отвественых! XD
-        groupResponible += `<input class='mobile__add-implementer' onclick=""/>`;
+        // Ответственные на мобилке ликуют
+        if(!user){
+          groupResponible += `<input class='mobile__add-implementer' onclick="reqEl = ${element.id}; impDel()"/>`;
+        }
         let label = `
           <div class="applications__box-applications-application-label">
             ${groupResponible}
