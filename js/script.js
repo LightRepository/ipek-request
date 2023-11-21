@@ -254,6 +254,21 @@ addImplemOk.addEventListener("click", () => {
   }).done((data) => {
     impDel();
     toggleRequest(statusFilterBtn);
+    if (userPermissions !== "Пользователь") {
+      if (userName === respAddInp.innerText) {
+        Notification.requestPermission().then((perm) => {
+          if (perm === "granted") {
+            const notification = new Notification(
+              "Вас выбрали ответственным за заявку",
+              {
+                body: "Посмотрите категорию 'Мои заявки'",
+                icon: "../img/favicon.ico",
+              }
+            );
+          }
+        });
+      }
+    }
   });
 });
 function replaceAddImp() {
@@ -576,7 +591,7 @@ function compareSwitch(method) {
 
 //Загрузка заявок
 const reqBox = document.querySelector(".applications__box-applications");
-
+console.log(userPermissions);
 let LoadReq = async (btnAct) => {
   let promise = await $.ajax({
     url: "php/findingReq.php",
@@ -927,6 +942,16 @@ function targetSubmitReq() {
     isDeadlineSelect = false;
     isTitleSelect = false;
     deadLine.classList.remove("font-black");
+    if (userPermissions !== "Пользователь") {
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          const notification = new Notification("Созадана новая заявка", {
+            body: data.get("title"),
+            icon: "../img/favicon.ico",
+          });
+        }
+      });
+    }
     validationBtn.forEach((el) => {
       el.value = "";
     });
@@ -1079,10 +1104,6 @@ const validationSelectGroupEdit = document.getElementById(
   "group_select__current-edit"
 );
 
-new Notification("fafa", {
-  body: "hello",
-  data: { hello: "world" },
-});
 const requestEditTitle = document.querySelector("#request_edit_title");
 const dateDeadLine = document.querySelector(".deadline_edit_inp-edit");
 function save() {
