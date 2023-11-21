@@ -46,7 +46,6 @@ function UserSwitch() {
   adminPanel.remove();
   checkboxBox.remove();
 
-
   //Для исполнителей
   if (userPermissions === "Ответственный") {
     submitRespond.classList.add("no__active");
@@ -684,7 +683,7 @@ let LoadReq = async (btnAct) => {
           groupResponible = `<p>${groupResponible}</p>`;
         }
         // Ответственные на мобилке ликуют
-        if(!user){
+        if (!user) {
           groupResponible += `<input class='mobile__add-implementer' onclick="reqEl = ${element.id}; impDel()"/>`;
         }
         let label = `
@@ -1080,6 +1079,10 @@ const validationSelectGroupEdit = document.getElementById(
   "group_select__current-edit"
 );
 
+new Notification("fafa", {
+  body: "hello",
+  data: { hello: "world" },
+});
 const requestEditTitle = document.querySelector("#request_edit_title");
 const dateDeadLine = document.querySelector(".deadline_edit_inp-edit");
 function save() {
